@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAVE001 Twitch Packages</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%237b3fe4%27/%3E%3Ctext x=%2732%27 y=%2746%27 font-family=%27Arial,Helvetica,sans-serif%27 font-size=%2740%27 font-weight=%27700%27 fill=%27white%27 text-anchor=%27middle%27%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: dark stream-studio page, hero → how it works → proof strip → 3x3 package grid → review CTA */
+:root{
+  --bg:#0f1016; --panel:#171821; --line:#2a2b38; --fg:#f2f1f7; --muted:#a3a2b3;
+  --accent:#7b3fe4; --accent-soft:#c9b3ff; --gold:#f2c14e;
+  --display:"Space Grotesk",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-soft)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:22px;gap:16px;flex-wrap:wrap}
+nav .brand{font-family:var(--display);font-weight:700;letter-spacing:.04em}
+nav .links{display:flex;gap:20px;font-size:13px;color:var(--muted)}
+nav .links a{text-decoration:none}
+nav .links a:hover{color:var(--fg)}
+.hero{padding-block:48px 40px;display:grid;gap:18px}
+.hero h1{font-size:clamp(34px,5.4vw,56px);line-height:1.05;max-width:16ch}
+.hero p{color:var(--muted);max-width:60ch;margin:0;font-size:16px}
+.actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-block;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;text-decoration:none;text-align:center;border:1px solid var(--line);background:transparent;color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:hover{border-color:var(--accent-soft)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px}
+.textlink{font-size:14px;color:var(--accent-soft)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-block:8px 40px}
+.step{background:var(--panel);border-radius:10px;padding:18px;font-size:14px;color:var(--muted)}
+.step b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-soft);margin-bottom:8px}
+.proof{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;border-block:1px solid var(--line);padding-block:28px;margin-bottom:48px}
+.badges{display:flex;gap:14px;flex-wrap:wrap}
+.badge{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.badge .big{font-family:var(--display);font-size:28px;font-weight:700;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.badge .lbl{font-size:13px;line-height:1.3}
+.badge .lbl small{display:block;color:var(--muted);font-size:12px}
+.medal{width:34px;height:34px;border-radius:50%;background:var(--gold);color:#1a1405;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:13px}
+.proof p{margin:0;color:var(--muted);font-size:14px;max-width:52ch}
+.pk-head{display:grid;gap:6px;margin-bottom:20px}
+.pk-head h2{font-size:30px}
+.pk-head p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.card.featured .tag{color:var(--accent-soft)}
+.card h3{font-size:19px}
+.price{font-family:var(--display);font-size:38px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.price span{font-family:var(--body);font-size:13px;font-weight:400;color:var(--muted)}
+.term{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.goal{font-weight:600;font-size:14px;color:var(--accent-soft)}
+.card ul{margin:4px 0 0;padding-left:18px;font-size:14px;display:grid;gap:3px;flex:1;align-content:start}
+.best{font-size:13px;color:var(--muted)}
+.card .btn{width:100%;margin-top:6px}
+.earn{border:1px dashed var(--gold);border-radius:8px;padding:10px 12px;display:grid;gap:3px}
+.earn .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.earn .v{font-family:var(--display);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.earn .m{font-size:12px;color:var(--muted)}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:56px}
+.info .box{background:var(--panel);border-radius:12px;padding:22px;display:grid;gap:10px;align-content:start;min-width:0}
+.info h3{font-size:19px}
+.info ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px;display:grid;gap:4px}
+.faq{margin-top:56px;display:grid;gap:10px}
+.faq h2{font-size:26px;margin-bottom:6px}
+.faq details{background:var(--panel);border-radius:10px;padding:14px 18px}
+.faq summary{cursor:pointer;font-weight:600}
+.faq p{margin:8px 0 0;color:var(--muted);font-size:14px;max-width:70ch}
+@media (max-width:700px){.info{grid-template-columns:1fr}}
+.fine{font-size:12px;color:var(--muted);margin:18px 0 0;max-width:90ch}
+.cta{margin-block:56px 64px;background:var(--accent);border-radius:16px;padding:40px clamp(20px,4vw,48px);display:grid;gap:14px}
+.cta h2{font-size:clamp(26px,3.4vw,34px)}
+.cta p{margin:0;max-width:52ch;color:#ece4ff}
+.cta .btn{background:var(--bg);border-color:var(--bg);color:var(--fg);justify-self:start}
+footer{border-top:1px solid var(--line);padding-block:22px;font-size:12px;color:var(--muted)}
+@media (max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.proof{grid-template-columns:1fr}}
+@media (max-width:560px){.grid,.steps{grid-template-columns:1fr}nav .links{display:none}}
+@media (prefers-reduced-motion:no-preference){.btn{transition:border-color .15s,transform .15s}.btn:hover{transform:translateY(-1px)}}
+</style>
+</head>
+<body style="margin:0">
+
+<nav><div class="wrap">
+  <div class="brand">MAVE001</div>
+  <div class="links"><a href="#packages">Packages</a><a href="#how">How it works</a><a href="#review">Free review</a></div>
+</div></nav>
+
+<header class="wrap hero">
+  <div class="eyebrow">Twitch growth packages</div>
+  <h1>Pick the pace that fits your channel. We handle the growth.</h1>
+  <p>Nine packages, one clear rule: a smaller monthly investment runs longer, and a bigger one gets you there faster. Every package ends with defined milestones and honest reporting.</p>
+  <div class="actions">
+    <a class="btn primary" href="#packages">Compare packages</a>
+    <a class="textlink" href="https://www.fiverr.com/s/P2kKWVw" target="_blank" rel="noopener">Not sure? Get a free channel review</a>
+  </div>
+</header>
+
+<section class="wrap steps" id="how">
+  <div class="step"><b>1 · Review</b>I audit your channel and tell you honestly what is holding it back.</div>
+  <div class="step"><b>2 · Choose</b>We match you to the package that fits your goal, budget and timeline.</div>
+  <div class="step"><b>3 · Build</b>Clips, positioning, calls and reporting start in the first week.</div>
+  <div class="step"><b>4 · Step up</b>Hit your milestone, then move up to grow faster.</div>
+</section>
+
+<section class="wrap">
+  <div class="proof">
+    <div class="badges">
+      <div class="badge"><div class="medal">TR</div><div class="lbl">Top Rated<small>on Upwork</small></div></div>
+      <div class="badge"><div class="big">100%</div><div class="lbl">Job Success<small>Score on Upwork</small></div></div>
+    </div>
+    <p>Clients rate the work, not the pitch. Both badges are earned from completed, reviewed contracts on Upwork.</p>
+  </div>
+</section>
+
+<main class="wrap" id="packages">
+  <div class="pk-head">
+    <h2>Choose your package</h2>
+    <p>Each tier includes everything from the one before it, plus more.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="fine">Goals are set at kickoff from your starting point. Results depend on your consistency and niche, and no income or follower outcome is guaranteed. Ad spend is paid separately by you. All orders and messages go through Fiverr. Earning targets are estimates based on Twitch's standard payout of about $2.50 per $4.99 Tier 1 sub (50% split) and $0.01 per Bit; sponsor income varies by niche and deal.</p>
+
+  <div class="info">
+    <div class="box">
+      <h3>What I need from you</h3>
+      <ul>
+        <li>At least 3 streams a week on a regular schedule</li>
+        <li>Access to your VODs so I can cut clips</li>
+        <li>Twitch analytics shared at kickoff and each month</li>
+        <li>Quick feedback on plans and posts</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>When your package ends</h3>
+      <ul>
+        <li>Renew the same package to keep the momentum</li>
+        <li>Step up to a bigger package to grow faster</li>
+        <li>Or move to a lighter monthly plan to maintain what we built</li>
+        <li>You keep every clip, plan and asset we made</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2>Questions</h2>
+    <details><summary>How do I pay?</summary><p>Every order goes through Fiverr, so your payment is protected by Fiverr's terms. Click any Choose button to start.</p></details>
+    <details><summary>Do you guarantee followers or earnings?</summary><p>No. Nobody can honestly guarantee that. Each package has clear targets, the work to reach them, and monthly reports so you see exactly where you stand.</p></details>
+    <details><summary>How are the earning targets worked out?</summary><p>From Twitch's standard payouts: about $2.50 per Tier 1 sub and $0.01 per Bit, plus sponsor deals on the bigger packages. Your real numbers depend on your niche, schedule and community.</p></details>
+    <details><summary>Can I switch packages?</summary><p>Yes. You can step up at any time once you hit a milestone.</p></details>
+    <details><summary>What if I'm not sure where to start?</summary><p>Request the free channel review below and I'll recommend a package for your channel.</p></details>
+  </div>
+</main>
+
+<section class="wrap" id="review">
+  <div class="cta">
+    <h2>Not sure which package fits?</h2>
+    <p>Send me your channel link on Fiverr. I'll review it and recommend the right starting point.</p>
+    <a class="btn" href="https://www.fiverr.com/s/P2kKWVw" target="_blank" rel="noopener">Request your free channel review</a>
+  </div>
+</section>
+
+<footer><div class="wrap">© MAVE001 · Twitch growth</div></footer>
+
+<script>
+const FIVERR="https://www.fiverr.com/s/P2kKWVw";
+const P=[
+ ["Start here","Starter",300,6,"Affiliate and your first steady viewers",["Channel setup and positioning","12 short-form clips a month","1 strategy call a month","Monthly performance report","Chat support"],"Small channels starting from scratch"],
+ ["Package 02","Launch",500,5,"Affiliate plus a repeat audience",["Everything in Starter","16 clips a month","2 strategy calls a month","Stream schedule and content plan","Networking and raid plan"],"Streamers ready to get consistent"],
+ ["Package 03","Growth",750,4,"A working community engine",["Everything in Launch","20 clips a month","Monthly content calendar","Chat and retention playbook","Priority replies"],"Affiliates pushing past a plateau"],
+ ["Package 04","Pro",1000,4,"Faster growth and a second discovery channel",["Everything in Growth","24 clips a month","Weekly check-in","YouTube highlights with SEO titles","Thumbnail and title reviews"],"Streamers who want YouTube too"],
+ ["Package 05","Accelerator",1500,3,"Multi-platform momentum",["Everything in Pro","30 clips a month","Weekly strategy calls","Posting across 3 platforms","Collab outreach to similar streamers"],"Serious creators on a deadline"],
+ ["Package 06","Authority",2000,3,"A brand people recognize",["Everything in Accelerator","36 clips a month","Brand kit and overlay direction","Paid ad setup (ad spend extra)","Bi-weekly growth audit"],"Creators building a brand",["$400 – $900 / month","150–250 subs plus Bits by month 3"]],
+ ["Package 07","Partner Push",3000,2,"A Partner-ready application",["Everything in Authority","Partner requirements roadmap","Sponsor pitch deck","Outreach to relevant brands","Two-week ad sprint (spend extra)"],"Affiliates chasing Partner",["$800 – $1,800 / month","Partner status, 250–400 subs, first sponsor"]],
+ ["Package 08","Brand Launch",5000,2,"A full relaunch with a campaign",["Everything in Partner Push","Complete rebrand and overlays","Launch campaign plan","Managed paid ads (spend extra)","Dedicated growth manager"],"Established streamers relaunching",["$1,500 – $3,500 / month","400–700 subs plus 1–2 sponsors"]],
+ ["Package 09","Full Launch",10000,1,"A 30-day done-for-you launch",["Everything in Brand Launch","Daily hands-on management","Full content and clip production","Sponsor and partnership outreach","Priority access, same-day replies"],"Teams and brands launching fast",["$3,000 – $6,000 / month","700–1,000 subs plus sponsor deals"]]
+];
+const $=n=>"$"+n.toLocaleString("en-US");
+document.getElementById("grid").innerHTML=P.map(([tag,name,m,len,goal,items,best,earn],i)=>`
+ <article class="card${i===0?" featured":""}">
+  <div class="tag">${tag}</div><h3>${name}</h3>
+  <div class="price">${$(m)} <span>/ month</span></div>
+  <div class="term">${len} month${len>1?"s":""} · ${$(m*len)} total</div>
+  <div class="goal">${goal}</div>
+  ${earn?`<div class="earn"><span class="k">Earning target · not guaranteed</span><span class="v">${earn[0]}</span><span class="m">${earn[1]}</span></div>`:""}
+  <ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul>
+  <div class="best">Best for: ${best}</div>
+  <a class="btn${i===0?" primary":""}" href="${FIVERR}" target="_blank" rel="noopener">Choose ${name}</a>
+ </article>`).join("");
+</script>
+</body>
+</html>
